@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="792.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.flightscul.SecondaryController">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="792.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SecondaryController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text fx:id="PTFtitle" strokeType="OUTSIDE" strokeWidth="0.0" text="PTF" translateY="50.0">
