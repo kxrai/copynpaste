@@ -1,49 +1,27 @@
 package com.example;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class SecondaryController {
 
     @FXML
-    private TextField departCode;
+    private Text PTFtitle;
 
     @FXML
-    private TextField departDate;
+    private Text econTitle;
 
     @FXML
-    private TextField destCode;
+    private Text genflightTitle;
 
     @FXML
-    private TextField returnDate;
+    private Button primaryButton;
 
     @FXML
-    private Button searchButton;
+    void switchToSecondary(ActionEvent event) {
 
-    @FXML
-    void switchToSecondary(ActionEvent event) throws IOException {
-        String dptCode = departCode.getText();
-        String dptDate = departDate.getText();
-        String dstCode = destCode.getText();
-        String rtrDate = returnDate.getText();
-        ArrayList<String> toPyarr = new ArrayList<String>();
-        toPyarr.add(dptCode);
-        toPyarr.add(dstCode);
-        toPyarr.add(dptDate);
-        toPyarr.add(rtrDate);
-        FileWriter writer = new FileWriter("toPyScraper.txt"); 
-        for(String str: toPyarr) {
-        writer.write(str + System.lineSeparator());
-        }
-        writer.close();
-
-        
     }
 
 }
