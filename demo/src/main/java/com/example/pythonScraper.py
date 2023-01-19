@@ -7,8 +7,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 
 #CHROME DRIVER
-chromedriver_path = 'C://Users/Games/Documents/GitHub/Flights-Culminating/flights/chromedriver.exe'
-
+chromedriver_path = 'C://Users/Games/Documents/GitHub/copynpaste/demo/src/main/java/com/example/chromedrie.exe'
 driver = webdriver.Chrome(executable_path=chromedriver_path) # This will open the Chrome window
 sleep(2)
 
@@ -121,7 +120,6 @@ Cheapest Flight: {}\nAverage Price: {}\n\nRecommendation: {}\n\nEnd of message'.
     server.sendmail('YOUREMAIL@hotmail.com', 'YOUROTHEREMAIL@domain.com', msg)
     print('sent email.....')
 
-
 def page_scrape():
     """This function takes care of the scraping part"""
     
@@ -223,6 +221,17 @@ def page_scrape():
     flights_df['timestamp'] = strftime("%Y%m%d-%H%M") # so we can know when it was scraped
     return flights_df
 
+# opening the file in read mode
+usrInput = open("file1.txt", "r")
+
+# reading the file
+data = my_file.read()
+
+# replacing end splitting the text 
+# when newline ('\n') is seen.
+data_into_list = data.split("\n")
+print(data_into_list)
+my_file.close()
 
 city_from = input('From which city? ')
 city_to = input('Where to? ')

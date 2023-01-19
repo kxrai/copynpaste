@@ -28,6 +28,7 @@ public class HomescreenController {
 
     @FXML
     void switchToSecondary(ActionEvent event) throws IOException {
+        
         String dptCode = departCode.getText();
         String dptDate = departDate.getText();
         String dstCode = destCode.getText();
@@ -44,7 +45,6 @@ public class HomescreenController {
         writer.close();
         
         App.setRoot("secondary");
-
     }
 
 }
