@@ -39,9 +39,27 @@ public class HomescreenController {
 
     void switchToSecondary(ActionEvent event) throws IOException {
         
+        // Airport Departure Code (Home Location)
         String dptCode = departCode.getText();
-        String dptDate = departDate.getText();
+
+        // input validation to make sure user enters valid code
+        if(dptCode.length()!=3 || !dptCode.matches("^[a-zA-Z]*$")){
+            System.out.println("Enter valid airport code");
+            return;
+        }
+
+        // Airport Departure Code (Destination)
         String dstCode = destCode.getText();
+
+        // input validation to make sure user enters valid code
+        if(dstCode.length()!=3 || !dstCode.matches("^[a-zA-Z]*$")){
+            System.out.println("Enter valid airport code");
+            return;
+        }
+
+        String dptDate = departDate.getText();
+
+        
         String rtrDate = returnDate.getText();
         ArrayList<String> toPyarr = new ArrayList<String>();
         toPyarr.add(dptCode);
