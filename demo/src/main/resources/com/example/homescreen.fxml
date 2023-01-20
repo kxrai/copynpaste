@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
@@ -46,12 +47,12 @@
          </font>
       </Text>
       <TextField fx:id="departCode" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="100.0" translateX="-80.0" translateY="25.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure Date From" translateX="-220.0" translateY="71.0">
+      <DatePicker fx:id="homeDate" editable="false" promptText="select date" translateX="-42.0" translateY="81.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure Date From" translateX="-220.0" translateY="24.0">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="departDate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="100.0" promptText="yyyy-mm-dd" translateX="-80.0" translateY="40.0" />
       <Button fx:id="searchButton" alignment="TOP_CENTER" blendMode="DIFFERENCE" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#switchToSecondary" prefHeight="69.0" prefWidth="184.0" text="Search" textAlignment="CENTER" translateX="200.0">
          <font>
             <Font name="Comic Sans MS Bold" size="32.0" />
@@ -78,7 +79,7 @@
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="returnDate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="100.0" promptText="yyyy-mm-dd" translateX="-80.0" translateY="-230.0" />
+      <DatePicker fx:id="dstDate" promptText="select date" translateX="-42.0" translateY="-232.0" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

@@ -1,9 +1,8 @@
 package com.example;
 
+import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -11,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.input.DataFormat;
 
 public class HomescreenController {
 
@@ -29,6 +27,7 @@ public class HomescreenController {
 
     @FXML
     private Button searchButton;
+    
     @FXML
 
     /* 
@@ -40,18 +39,19 @@ public class HomescreenController {
 
     void switchToSecondary(ActionEvent event) throws IOException {
         
-        //get date
-        //System.out.println(dstDate.getValue());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String date2 = dstDate.getValue().format(formatter);
-        System.out.println(date2);
 
         //get first date
         String date1 = homeDate.getValue().format(formatter);
         System.out.println(date1);
+
+        //get second date
+        //System.out.println(dstDate.getValue());
+        String date2 = dstDate.getValue().format(formatter);
+        System.out.println(date2);
+
         // Airport Departure Code (Home Location)
         String dptCode = departCode.getText();
-
         // input validation to make sure user enters valid code
         if(dptCode.length()!=3 || !dptCode.matches("^[a-zA-Z]*$")){
             System.out.println("Enter valid airport code");
@@ -60,7 +60,6 @@ public class HomescreenController {
 
         // Airport Departure Code (Destination)
         String dstCode = destCode.getText();
-
         // input validation to make sure user enters valid code
         if(dstCode.length()!=3 || !dstCode.matches("^[a-zA-Z]*$")){
             System.out.println("Enter valid airport code");
@@ -72,13 +71,15 @@ public class HomescreenController {
         ArrayList<String> toPyarr = new ArrayList<String>();
         toPyarr.add(dptCode);
         toPyarr.add(dstCode);
+        toPyarr.add(date1);
+        toPyarr.add(date2);
         // toPyarr.add(dptDate);
         // toPyarr.add(rtrDate);
-        // FileWriter writer = new FileWriter("toPyScraper.txt"); 
-        // for(String str: toPyarr) {
-        // writer.write(str + System.lineSeparator());
-        // }
-        // writer.close();
+        FileWriter writer = new FileWriter("toPyScraper.txt"); 
+        for(String str: toPyarr) {
+        writer.write(str + System.lineSeparator());
+        }
+        writer.close();
         
         App.setRoot("secondary");
     }
