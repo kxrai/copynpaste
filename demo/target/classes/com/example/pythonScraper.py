@@ -7,7 +7,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 
 #CHROME DRIVER
-chromedriver_path = 'C://Users/Games/Documents/GitHub/copynpaste/demo/src/main/java/com/example/chromedrie.exe'
+chromedriver_path = 'C://Users/Games/Documents/GitHub/copynpaste/demo/src/main/java/com/example/chromedriver.exe'
 driver = webdriver.Chrome(executable_path=chromedriver_path) # This will open the Chrome window
 sleep(2)
 
@@ -104,22 +104,11 @@ def start_kayak(city_from, city_to, date_start, date_end):
     weird = '¯\\_(ツ)_/¯'
     if loading == weird:
         loading = 'Not sure'
-    
-    username = 'YOUREMAIL@hotmail.com'
-    password = 'YOUR PASSWORD'
 
-    server = smtplib.SMTP('smtp.outlook.com', 587)
-    server.ehlo()
-    server.starttls()
-    server.login(username, password)
-    msg = ('Subject: Flight Scraper\n\n\
+    scraperOutput = ('Subject: Flight Scraper\n\n\
 Cheapest Flight: {}\nAverage Price: {}\n\nRecommendation: {}\n\nEnd of message'.format(matrix_min, matrix_avg, (loading+'\n'+prediction)))
-    message = MIMEMultipart()
-    message['From'] = 'YOUREMAIL@hotmail.com'
-    message['to'] = 'YOUROTHEREMAIL@domain.com'
-    server.sendmail('YOUREMAIL@hotmail.com', 'YOUROTHEREMAIL@domain.com', msg)
-    print('sent email.....')
-
+    print(scraperOutput)
+    
 def page_scrape():
     """This function takes care of the scraping part"""
     
@@ -222,21 +211,21 @@ def page_scrape():
     return flights_df
 
 # opening the file in read mode
-usrInput = open("file1.txt", "r")
+usrInput = open("toPyScraper.txt", "r")
 
 # reading the file
-data = my_file.read()
+data = usrInput.read()
 
 # replacing end splitting the text 
 # when newline ('\n') is seen.
 data_into_list = data.split("\n")
 print(data_into_list)
-my_file.close()
+usrInput.close()
 
-city_from = input('From which city? ')
-city_to = input('Where to? ')
-date_start = input('Search around which departure date? Please use YYYY-MM-DD format only ')
-date_end = input('Return when? Please use YYYY-MM-DD format only ')
+city_from = data_into_list[0]
+city_to = data_into_list[1]
+date_start = data_into_list[2]
+date_end = data_into_list[3]
 
 # city_from = 'LIS'
 # city_to = 'SIN'
