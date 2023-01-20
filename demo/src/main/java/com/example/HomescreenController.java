@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import java.time.format.DateTimeFormatter;
+
 
 public class HomescreenController {
 
@@ -27,6 +29,14 @@ public class HomescreenController {
     private Button searchButton;
 
     @FXML
+
+    /* 
+    public static void dateValidator (String[] args){
+        DateTimeFormatter checkDate = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+        System.out.println(checkDate);
+    }
+    */
+
     void switchToSecondary(ActionEvent event) throws IOException {
         
         String dptCode = departCode.getText();
