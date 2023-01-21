@@ -64,12 +64,9 @@ with open("toPyScraper.txt", "r") as file:
 for i in range(0, len(lines)):    
     print(lines[i])
 
-distance = float(lines[4])
+distance = int(lines[4])
 departure_date = lines[2]
 return_date = lines[3]
-
-
-
 
 prices = cheapest_days(distance, departure_date, return_date)
 with open('prices.csv', mode='w') as csv_file:
