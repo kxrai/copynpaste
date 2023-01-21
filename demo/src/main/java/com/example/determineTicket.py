@@ -3,6 +3,9 @@ from datetime import datetime
 import random
 import csv
 
+"""
+Takes distance imnputed by user
+"""
 def distance(lat1, lon1, lat2, lon2):
     #Convert to radians
     lat1 = math.radians(lat1)
@@ -17,7 +20,9 @@ def distance(lat1, lon1, lat2, lon2):
     #Radius of earth in kilometers. Use 3959 for miles
     r = 6371
     return c * r
-
+"""
+determines the cost of the found ticket 
+"""
 def ticket_price(distance, low, high, class_multiplier):
     price = int((distance*random.uniform(0.01, 0.15))*class_multiplier + random.uniform(low,high))
     while True:
@@ -34,6 +39,10 @@ def ticket_price(distance, low, high, class_multiplier):
             else:
                 price = int((distance*random.uniform(0.01, 0.15))*class_multiplier + random.uniform(low,high))
 
+
+""" 
+finds the cheapest price based on the tickets and forwards cheapest ticket prices to a csv file
+"""
 def cheapest_days(distance, departure_date, return_date):
     prices = {}
     economy_price = ticket_price(distance, 200, 1400, 1) + ticket_price(distance, 600, 1400, 1)
@@ -42,9 +51,23 @@ def cheapest_days(distance, departure_date, return_date):
     prices[departure_date] = {"economy": economy_price, "business": business_price, "first": first_price}
     return prices
 
-distance = int(input("What is the distance in kilometers between the two countries? "))
-departure_date = input("What day do you want to depart in format YYYY-MM-DD? ")
-return_date = input("What day do you want to return in format YYYY-MM-DD? ")
+
+#distance = int(input("What is the distance in kilometers between the two countries? "))
+#departure_date = input("What day do you want to depart in format YYYY-MM-DD? ")
+#return_date = input("What day do you want to return in format YYYY-MM-DD? ")
+lines = []
+with open("toPyScraper.txt", "r") as file:
+    for line in file:
+        lines.append(line.strip())
+
+ 
+for i in range(0, len(lines)):    
+    print(lines[i])
+
+distance = float(lines[4])
+departure_date = lines[2]
+return_date = lines[3]
+
 
 prices = cheapest_days(distance, departure_date, return_date)
 with open('prices.csv', mode='w') as csv_file:
