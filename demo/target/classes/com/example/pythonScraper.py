@@ -1,10 +1,14 @@
 from time import sleep, strftime
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from random import randint
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import smtplib
 from email.mime.multipart import MIMEMultipart
+from selenium.webdriver.common.by import By
+
 
 #CHROME DRIVER
 chromedriver_path = 'C://Users/Games/Documents/GitHub/copynpaste/demo/src/main/java/com/example/chromedriver.exe'
@@ -20,8 +24,9 @@ sleep(3)
 
 def load_more():
     try:
-        more_results = '//a[@class = "moreButton"]'
-        driver.find_element_by_xpath(more_results).click()
+        #more_results = '//a[@class = "moreButton"]'
+        #driver.find_element_by_xpath(more_results).click()
+        driver.find_element(By.XPATH, '//a[@class = "moreButton"]').click()
         print('sleeping.....')
         sleep(randint(25,35))
     except:
@@ -39,7 +44,8 @@ def start_kayak(city_from, city_to, date_start, date_end):
     # sometimes a popup shows up, so we can use a try statement to check it and close
     try:
         xp_popup_close = '//button[contains(@id,"dialog-close") and contains(@class,"Button-No-Standard-Style close ")]'
-        driver.find_elements_by_xpath(xp_popup_close)[5].click()
+        #driver.find_elements_by_xpath(xp_popup_close)[5].click()
+        driver.find_element(By.XPATH, xp_popup_close)[5].click()
     except Exception as e:
         pass
     sleep(randint(60,95))
@@ -112,8 +118,9 @@ Cheapest Flight: {}\nAverage Price: {}\n\nRecommendation: {}\n\nEnd of message'.
 def page_scrape():
     """This function takes care of the scraping part"""
     
-    xp_sections = '//*[@class="section duration"]'
-    sections = driver.find_elements_by_xpath(xp_sections)
+    #xp_sections = '//*[@class="section duration"]'
+    #sections = driver.find_elements_by_xpath(xp_sections)
+    sections = driver.find_element(By.XPATH, '//*[@class="section duration"]')
     sections_list = [value.text for value in sections]
     section_a_list = sections_list[::2] # This is to separate the two flights
     section_b_list = sections_list[1::2] # This is to separate the two flights
@@ -140,8 +147,9 @@ def page_scrape():
         b_section_names.append(''.join(n.split()[2:5]))
         b_duration.append(''.join(n.split()[0:2]))
 
-    xp_dates = '//div[@class="section date"]'
-    dates = driver.find_elements_by_xpath(xp_dates)
+    #xp_dates = '//div[@class="section date"]'
+    #dates = driver.find_elements_by_xpath(xp_dates)
+    dates = driver.find_element(By.XPATH, '//div[@class="section date"]')
     dates_list = [value.text for value in dates]
     a_date_list = dates_list[::2]
     b_date_list = dates_list[1::2]
@@ -152,27 +160,32 @@ def page_scrape():
     b_weekday = [value.split()[1] for value in b_date_list]
     
     # getting the prices
-    xp_prices = '//a[@class="booking-link"]/span[@class="price option-text"]'
-    prices = driver.find_elements_by_xpath(xp_prices)
+    #xp_prices = '//a[@class="booking-link"]/span[@class="price option-text"]'
+    #prices = driver.find_elements_by_xpath(xp_prices)
+    prices = driver.find_element(By.XPATH, '//a[@class="booking-link"]/span[@class="price option-text"]')
     prices_list = [price.text.replace('$','') for price in prices if price.text != '']
     prices_list = list(map(int, prices_list))
 
     # the stops are a big list with one leg on the even index and second leg on odd index
-    xp_stops = '//div[@class="section stops"]/div[1]'
-    stops = driver.find_elements_by_xpath(xp_stops)
+    #xp_stops = '//div[@class="section stops"]/div[1]'
+    #stops = driver.find_elements_by_xpath(xp_stops)
+    prices = driver.find_element(By.XPATH, '//div[@class="section stops"]/div[1]')
     stops_list = [stop.text[0].replace('n','0') for stop in stops]
     a_stop_list = stops_list[::2]
     b_stop_list = stops_list[1::2]
 
-    xp_stops_cities = '//div[@class="section stops"]/div[2]'
-    stops_cities = driver.find_elements_by_xpath(xp_stops_cities)
+    #xp_stops_cities = '//div[@class="section stops"]/div[2]'
+    #stops_cities = driver.find_elements_by_xpath(xp_stops_cities)
+    stops_cities = driver.find_element(By.XPATH, '//div[@class="section stops"]/div[2]')
+
     stops_cities_list = [stop.text for stop in stops_cities]
     a_stop_name_list = stops_cities_list[::2]
     b_stop_name_list = stops_cities_list[1::2]
     
     # this part gets me the airline company and the departure and arrival times, for both legs
-    xp_schedule = '//div[@class="section times"]'
-    schedules = driver.find_elements_by_xpath(xp_schedule)
+    #xp_schedule = '//div[@class="section times"]'
+    #schedules = driver.find_elements_by_xpath(xp_schedule)
+    schedules = driver.find_element(By.XPATH, '//div[@class="section times"]')
     hours_list = []
     carrier_list = []
     for schedule in schedules:
