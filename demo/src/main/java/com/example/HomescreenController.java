@@ -42,12 +42,12 @@ public class HomescreenController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         //get first date
-        String date1 = homeDate.getValue().format(formatter);
+        String date1 = homeDate.getValue().format(formatter).toUpperCase();
         System.out.println(date1);
 
         //get second date
         //System.out.println(dstDate.getValue());
-        String date2 = dstDate.getValue().format(formatter);
+        String date2 = dstDate.getValue().format(formatter).toUpperCase();
         System.out.println(date2);
 
         // Airport Departure Code (Home Location)
