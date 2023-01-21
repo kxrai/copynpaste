@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class HomescreenController {
 
@@ -19,6 +20,12 @@ public class HomescreenController {
     @FXML
     private TextField destCode;
 
+    @FXML
+    private String distanceCode;
+
+    @FXML
+    private Text distanceLabel;
+    
     @FXML
     private DatePicker dstDate;
 
@@ -73,6 +80,7 @@ public class HomescreenController {
         toPyarr.add(dstCode);
         toPyarr.add(date1);
         toPyarr.add(date2);
+        toPyarr.add(distanceCode);
         // toPyarr.add(dptDate);
         // toPyarr.add(rtrDate);
         FileWriter writer = new FileWriter("toPyScraper.txt"); 
