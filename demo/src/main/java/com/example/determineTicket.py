@@ -60,9 +60,6 @@ with open("toPyScraper.txt", "r") as file:
     for line in file:
         lines.append(line.strip())
 
- 
-for i in range(0, len(lines)):    
-    print(lines[i])
 
 distance = int(lines[4])
 departure_date = lines[2]
