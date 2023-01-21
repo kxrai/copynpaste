@@ -47,15 +47,15 @@ departure_date = input("What day do you want to depart in format YYYY-MM-DD? ")
 return_date = input("What day do you want to return in format YYYY-MM-DD? ")
 
 prices = cheapest_days(distance, departure_date, return_date)
-
 with open('prices.csv', mode='w') as csv_file:
-    fieldnames = ['Departure Date', 'Return Date', 'Class', 'Price', 'Cost to Go', 'Cost to Return', 'Total Cost']
+    fieldnames = ['Departure Date', 'Return Date', 'Class', 'Departure Ticket Cost','Arrival Ticket Cost', 'Total Cost']
     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
     writer.writeheader()
     for class_name, price in prices[departure_date].items():
-        cost_to_go = int(price / 2)
-        cost_to_return = int(price / 2)
+        departure_ticket_cost = int(price / 2) + random.randint(0,50)
+        arrival_ticket_cost = int(price / 2) - random.randint(0,50)
         total_cost = price
-        writer.writerow({'Departure Date': departure_date, 'Return Date': return_date, 'Class': class_name, 'Price': price, 'Cost to Go': cost_to_go, 'Cost to Return': cost_to_return, 'Total Cost': total_cost})
+        writer.writerow({'Departure Date': departure_date, 'Return Date': return_date, 'Class': class_name, 'Departure Ticket Cost': departure_ticket_cost, 'Arrival Ticket Cost': arrival_ticket_cost, 'Total Cost': total_cost})
         print(f"{class_name}: {price}")
     print("Prices have been written to prices.csv.")
+
