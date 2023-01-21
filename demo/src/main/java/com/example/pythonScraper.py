@@ -16,7 +16,7 @@ driver = webdriver.Chrome(executable_path=chromedriver_path) # This will open th
 sleep(2)
 
 #web scraper site
-kayak = 'https://www.ca.kayak.com/flights/LIS-SIN/2019-07-29-flexible/2019-08-15-flexible?sort=bestflight_a'
+kayak = 'https://www.kayak.com/flights/LIS-SIN/2019-07-29-flexible/2019-08-15-flexible?sort=bestflight_a'
 driver.get(kayak)
 sleep(3)
 
@@ -36,61 +36,68 @@ def start_kayak(city_from, city_to, date_start, date_end):
     """City codes - it's the IATA codes!
     Date format -  YYYY-MM-DD"""
     
-    kayak = ('https://www.ca.kayak.com/flights/' + city_from + '-' + city_to +
+    kayak = ('https://www.kayak.com/flights/' + city_from + '-' + city_to +
              '/' + date_start + '-flexible/' + date_end + '-flexible?sort=bestflight_a')
     driver.get(kayak)
     sleep(randint(8,10))
     
     # sometimes a popup shows up, so we can use a try statement to check it and close
     try:
-        xp_popup_close = '//button[contains(@id,"dialog-close") and contains(@class,"Button-No-Standard-Style close ")]'
+        #xp_popup_close = '//button[contains(@id,"dialog-close") and contains(@class,"Button-No-Standard-Style close ")]'
         #driver.find_elements_by_xpath(xp_popup_close)[5].click()
-        driver.find_element(By.XPATH, xp_popup_close)[5].click()
+        driver.find_element(By.XPATH, '//button[contains(@id,"dialog-close") and contains(@class,"Button-No-Standard-Style close ")]')[5].click()
     except Exception as e:
         pass
     sleep(randint(60,95))
     print('loading more.....')
     
 #     load_more()
-    
+    '''
     print('starting first scrape.....')
     df_flights_best = page_scrape()
     df_flights_best['sort'] = 'best'
     sleep(randint(60,80))
-    
+    '''
     # Let's also get the lowest prices from the matrix on top
-    matrix = driver.find_elements_by_xpath('//*[contains(@id,"FlexMatrixCell")]')
+    #matrix = driver.find_elements_by_xpath('//*[contains(@id,"FlexMatrixCell")]')
+    '''
+    matrix = driver.find_elements(By.XPATH, '//*[contains(@id,"FlexMatrixCell")]')
     matrix_prices = [price.text.replace('$','') for price in matrix]
     matrix_prices = list(map(int, matrix_prices))
     matrix_min = min(matrix_prices)
     matrix_avg = sum(matrix_prices)/len(matrix_prices)
-    
+    '''
     print('switching to cheapest results.....')
-    cheap_results = '//a[@data-code = "price"]'
-    driver.find_element_by_xpath(cheap_results).click()
+    #cheap_results = '//a[@data-code = "price"]'
+    #driver.find_element_by_xpath(cheap_results).click()
+    driver.find_element(By.XPATH, '//a[@data-code = "price"]').click()
     sleep(randint(60,90))
+    '''
     print('loading more.....')
+    '''
     
 #     load_more()
-    
+    '''    
     print('starting second scrape.....')
     df_flights_cheap = page_scrape()
     df_flights_cheap['sort'] = 'cheap'
     sleep(randint(60,80))
-    
+    '''
+    '''
     print('switching to quickest results.....')
-    quick_results = '//a[@data-code = "duration"]'
-    driver.find_element_by_xpath(quick_results).click()  
+    #quick_results = '//a[@data-code = "duration"]'
+    #driver.find_element_by_xpath(quick_results).click()  
+    driver.find_element(By.XPATH, '//a[@data-code = "duration"]').click() 
     sleep(randint(60,90))
     print('loading more.....')
-    
+    '''
 #     load_more()
-    
+    '''
     print('starting third scrape.....')
     df_flights_fast = page_scrape()
     df_flights_fast['sort'] = 'fast'
     sleep(randint(60,80))
-    
+    '''
     # saving a new dataframe as an excel file. the name is custom made to your cities and dates
     final_df = df_flights_cheap.append(df_flights_best).append(df_flights_fast)
     final_df.to_excel('search_backups//{}_flights_{}-{}_from_{}_to_{}.xlsx'.format(strftime("%Y%m%d-%H%M"),
@@ -111,8 +118,7 @@ def start_kayak(city_from, city_to, date_start, date_end):
     if loading == weird:
         loading = 'Not sure'
 
-    scraperOutput = ('Subject: Flight Scraper\n\n\
-Cheapest Flight: {}\nAverage Price: {}\n\nRecommendation: {}\n\nEnd of message'.format(matrix_min, matrix_avg, (loading+'\n'+prediction)))
+    scraperOutput = ('Subject: Flight Scraper\n\n\Cheapest Flight: {}\nAverage Price: {}\n\nRecommendation: {}\n\nEnd of message'.format(matrix_min, matrix_avg, (loading+'\n'+prediction)))
     print(scraperOutput)
     
 def page_scrape():
