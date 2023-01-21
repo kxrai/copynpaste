@@ -104,14 +104,15 @@ def start_kayak(city_from, city_to, date_start, date_end):
                                                                                    city_from, city_to, 
                                                                                    date_start, date_end), index=False)
     print('saved df.....')
-    
+    '''
     # We can keep track of what they predict and how it actually turns out!
     xp_loading = '//div[contains(@id,"advice")]'
     loading = driver.find_element_by_xpath(xp_loading).text
+
     xp_prediction = '//span[@class="info-text"]'
     prediction = driver.find_element_by_xpath(xp_prediction).text
     print(loading+'\n'+prediction)
-    
+    '''
     # sometimes we get this string in the loading variable, which will conflict with the email we send later
     # just change it to "Not Sure" if it happens
     weird = '¯\\_(ツ)_/¯'
@@ -126,7 +127,7 @@ def page_scrape():
     
     #xp_sections = '//*[@class="section duration"]'
     #sections = driver.find_elements_by_xpath(xp_sections)
-    sections = driver.find_element(By.XPATH, '//*[@class="section duration"]')
+    sections = driver.find_elements(By.XPATH, '//*[@class="section duration"]')
     sections_list = [value.text for value in sections]
     section_a_list = sections_list[::2] # This is to separate the two flights
     section_b_list = sections_list[1::2] # This is to separate the two flights
@@ -155,7 +156,7 @@ def page_scrape():
 
     #xp_dates = '//div[@class="section date"]'
     #dates = driver.find_elements_by_xpath(xp_dates)
-    dates = driver.find_element(By.XPATH, '//div[@class="section date"]')
+    dates = driver.find_elements(By.XPATH, '//div[@class="section date"]')
     dates_list = [value.text for value in dates]
     a_date_list = dates_list[::2]
     b_date_list = dates_list[1::2]
@@ -168,21 +169,21 @@ def page_scrape():
     # getting the prices
     #xp_prices = '//a[@class="booking-link"]/span[@class="price option-text"]'
     #prices = driver.find_elements_by_xpath(xp_prices)
-    prices = driver.find_element(By.XPATH, '//a[@class="booking-link"]/span[@class="price option-text"]')
+    prices = driver.find_elements(By.XPATH, '//a[@class="booking-link"]/span[@class="price option-text"]')
     prices_list = [price.text.replace('$','') for price in prices if price.text != '']
     prices_list = list(map(int, prices_list))
 
     # the stops are a big list with one leg on the even index and second leg on odd index
     #xp_stops = '//div[@class="section stops"]/div[1]'
     #stops = driver.find_elements_by_xpath(xp_stops)
-    prices = driver.find_element(By.XPATH, '//div[@class="section stops"]/div[1]')
+    prices = driver.find_elements(By.XPATH, '//div[@class="section stops"]/div[1]')
     stops_list = [stop.text[0].replace('n','0') for stop in stops]
     a_stop_list = stops_list[::2]
     b_stop_list = stops_list[1::2]
 
     #xp_stops_cities = '//div[@class="section stops"]/div[2]'
     #stops_cities = driver.find_elements_by_xpath(xp_stops_cities)
-    stops_cities = driver.find_element(By.XPATH, '//div[@class="section stops"]/div[2]')
+    stops_cities = driver.find_elements(By.XPATH, '//div[@class="section stops"]/div[2]')
 
     stops_cities_list = [stop.text for stop in stops_cities]
     a_stop_name_list = stops_cities_list[::2]
@@ -191,7 +192,7 @@ def page_scrape():
     # this part gets me the airline company and the departure and arrival times, for both legs
     #xp_schedule = '//div[@class="section times"]'
     #schedules = driver.find_elements_by_xpath(xp_schedule)
-    schedules = driver.find_element(By.XPATH, '//div[@class="section times"]')
+    schedules = driver.find_elements(By.XPATH, '//div[@class="section times"]')
     hours_list = []
     carrier_list = []
     for schedule in schedules:
