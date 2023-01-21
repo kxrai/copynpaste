@@ -80,7 +80,7 @@
          </font>
       </Text>
       <DatePicker fx:id="dstDate" promptText="select date" translateX="-42.0" translateY="-232.0" />
-      <Text fx:id="distanceLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Airport Departure Code:" textAlignment="JUSTIFY" translateX="-230.0" translateY="-200.0">
+      <Text fx:id="distanceLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Distance" textAlignment="JUSTIFY" translateX="-230.0" translateY="-200.0">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
