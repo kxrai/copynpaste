@@ -68,6 +68,9 @@ distance = int(lines[4])
 departure_date = lines[2]
 return_date = lines[3]
 
+
+
+
 prices = cheapest_days(distance, departure_date, return_date)
 with open('prices.csv', mode='w') as csv_file:
     fieldnames = ['Departure Date', 'Return Date', 'Class', 'Departure Ticket Cost','Arrival Ticket Cost', 'Total Cost']
