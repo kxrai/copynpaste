@@ -14,7 +14,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="792.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.HomescreenController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PTF" translateY="100.0">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PTF" translateY="130.0">
          <font>
             <Font name="Comic Sans MS Bold" size="52.0" />
          </font>
@@ -36,7 +36,7 @@
          </fill>
       </Text>
       <Label text="Primary View" translateX="-300.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Generated Flight Tickets" translateY="30.0">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Generated Flight Tickets" translateY="60.0">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
          </font>
@@ -80,6 +80,12 @@
          </font>
       </Text>
       <DatePicker fx:id="dstDate" promptText="select date" translateX="-42.0" translateY="-232.0" />
+      <Text fx:id="distanceLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Airport Departure Code:" textAlignment="JUSTIFY" translateX="-230.0" translateY="-200.0">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="distanceCode" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="100.0" translateX="-70.0" translateY="-240.0" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
