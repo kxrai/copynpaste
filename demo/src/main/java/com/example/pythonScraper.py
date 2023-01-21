@@ -49,7 +49,7 @@ def start_kayak(city_from, city_to, date_start, date_end):
     except Exception as e:
         pass
     sleep(randint(60,95))
-    print('loading more.....')
+    #print('loading more.....')
     
 #     load_more()
     '''
@@ -67,7 +67,7 @@ def start_kayak(city_from, city_to, date_start, date_end):
     matrix_min = min(matrix_prices)
     matrix_avg = sum(matrix_prices)/len(matrix_prices)
     '''
-    print('switching to cheapest results.....')
+    print('cheapest results.....')
     #cheap_results = '//a[@data-code = "price"]'
     #driver.find_element_by_xpath(cheap_results).click()
     driver.find_element(By.XPATH, '//a[@data-code = "price"]').click()
@@ -77,12 +77,12 @@ def start_kayak(city_from, city_to, date_start, date_end):
     '''
     
 #     load_more()
-    '''    
+    
     print('starting second scrape.....')
     df_flights_cheap = page_scrape()
     df_flights_cheap['sort'] = 'cheap'
     sleep(randint(60,80))
-    '''
+    
     '''
     print('switching to quickest results.....')
     #quick_results = '//a[@data-code = "duration"]'
@@ -99,7 +99,7 @@ def start_kayak(city_from, city_to, date_start, date_end):
     sleep(randint(60,80))
     '''
     # saving a new dataframe as an excel file. the name is custom made to your cities and dates
-    final_df = df_flights_cheap.append(df_flights_best).append(df_flights_fast)
+    final_df = df_flights_cheap
     final_df.to_excel('search_backups//{}_flights_{}-{}_from_{}_to_{}.xlsx'.format(strftime("%Y%m%d-%H%M"),
                                                                                    city_from, city_to, 
                                                                                    date_start, date_end), index=False)
