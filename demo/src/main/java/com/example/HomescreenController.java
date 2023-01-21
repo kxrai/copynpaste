@@ -96,6 +96,8 @@ public class HomescreenController {
         writer.close();
         
         App.setRoot("secondary");
+
+        /* 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
         Parent root = loader.load();
         
@@ -104,6 +106,7 @@ public class HomescreenController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        */
 
     }
 

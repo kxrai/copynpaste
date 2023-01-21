@@ -42,10 +42,14 @@ public class SecondaryController {
     private Button primaryButton;
 
     @FXML
+
+
+    /* 
     public void setInfo(String dptCode, String dstCode) throws FileNotFoundException {
         this.dptCode = dptCode;
         this.dstCode = dstCode;
     }
+    */
     void switchToSecondary(ActionEvent event) throws IOException {
         App.setRoot("homescreen");
     }
