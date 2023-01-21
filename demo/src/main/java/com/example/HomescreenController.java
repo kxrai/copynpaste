@@ -21,7 +21,7 @@ public class HomescreenController {
     private TextField destCode;
 
     @FXML
-    private String distanceCode;
+    private TextField distanceCode;
 
     @FXML
     private Text distanceLabel;
@@ -72,6 +72,7 @@ public class HomescreenController {
             System.out.println("Enter valid airport code");
             return;
         }
+        String dtCode = distanceCode.getText();
 
         //String dptDate = departDate.getText();
         //String rtrDate = returnDate.getText();
@@ -80,7 +81,7 @@ public class HomescreenController {
         toPyarr.add(dstCode);
         toPyarr.add(date1);
         toPyarr.add(date2);
-        toPyarr.add(distanceCode);
+        toPyarr.add(dtCode);
         // toPyarr.add(dptDate);
         // toPyarr.add(rtrDate);
         FileWriter writer = new FileWriter("toPyScraper.txt"); 
